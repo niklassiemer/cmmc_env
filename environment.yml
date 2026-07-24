@@ -3,4 +3,7 @@ channels:
 dependencies:
 - tqdm =4.67.3
 - sim-atlas-toolkit =0.0.5
+- pip:
+  - marimo-jupyter-extension==0.3.0
 name: base
+
