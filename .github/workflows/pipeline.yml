@@ -150,11 +150,11 @@ jobs:
         name: env-linux-x64.yml
         path: env-linux-x64.yml
 
-          #  linux_x64_install_core_to_environment:
-          #    needs: [linux_x64_test_environment]
-          #    runs-on: ubuntu-latest
-          #    steps:
-          #    - uses: actions/checkout@v4
+  linux_x64_install_core_to_environment:
+    needs: [linux_x64_test_environment]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
           #    - name: Conda config
           #      run: echo -e "channels:\n  - conda-forge\n" > .condarc
           #    - name: Setup Mambaforge
