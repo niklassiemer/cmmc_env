@@ -35,8 +35,10 @@ jobs:
         print(tqdm.__file__)
         EOF
         ls /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/tqdm*
-        mv /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/tqdm-4.6{7.3,7.4}.dist-info
+        #mv /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/tqdm-4.6{7.3,7.4}.dist-info
         ls /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/tqdm*
+        ls /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/sim-atlas-toolkit*.dist-info
+        sed '/Requires-Dist:/s/tqdm>=4.67.4/tqdm>=4.67.3/g' /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/sim-atlas-toolkit*.dist-info/METADATA
     - name: Test
       id: pip_check
       if: steps.setup_mambaforge.outcome == 'success'
