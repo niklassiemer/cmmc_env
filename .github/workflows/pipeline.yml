@@ -34,6 +34,9 @@ jobs:
         import tqdm
         print(tqdm.__file__)
         EOF
+        ls /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/tqdm*
+        mv /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/tqdm-4.6{4.3,4.4}.dist-info
+        ls /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/tqdm*
     - name: Test
       id: pip_check
       if: steps.setup_mambaforge.outcome == 'success'
