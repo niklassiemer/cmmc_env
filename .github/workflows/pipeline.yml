@@ -36,7 +36,7 @@ jobs:
         tar -xf sim_atlas_toolkit-*.tar.gz
         ls
         cd sim_atlas_toolkit-*/
-        sed -i 's/"tqdm>=4.68.4"/"tqdm>=4.68.3"/g' pyproject.toml
+        sed -i 's/"tqdm>=4.68.4"/"tqdm>=4.67.3"/g' pyproject.toml
         pip install . --no-deps --no-build-isolation
     - name: Test
       id: pip_check
