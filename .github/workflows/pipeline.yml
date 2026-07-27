@@ -30,16 +30,12 @@ jobs:
       timeout-minutes: 30
       continue-on-error: true
       run: |
-        python << EOF
-        import tqdm
-        print(tqdm.__file__)
-        EOF
-        #ls /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/tqdm*
-        #mv /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/tqdm-4.6{7.3,7.4}.dist-info
-        #ls /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/tqdm*
-        ls -d /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/*
-        #ls /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/sim_atlas_toolkit*.dist-info
-        sed -i '/Requires-Dist:/s/tqdm>=4.68.4/tqdm>=4.68.3/g' /home/runner/miniconda3/envs/test/lib/python3.12/site-packages/sim_atlas_toolkit*.dist-info/METADATA
+        mamba install uv-build -y 
+        pip download --no-binary ":all:" --no-deps --no-build-isolation sim-atlas-toolkit
+        tar -xv sim_atlas_toolkit-*.tar.gz
+        cd sim_atlas_toolkit-*/
+        sed -i 's/"tqdm>=4.68.4"/"tqdm>=4.68.3"/g' pyproject.toml
+        pip install . --no-deps --no-build-isolation
     - name: Test
       id: pip_check
       if: steps.setup_mambaforge.outcome == 'success'
